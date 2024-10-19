@@ -61,6 +61,17 @@ services:
             - mysql
         networks:
             - tcl_alpha
+    node:
+        image: node:18.20.4-alpine
+        container_name: tcl_alpha_node
+        working_dir: /var/www/html
+        volumes:
+        - '.:/var/www/html'
+        networks:
+        - tcl_alpha
+        depends_on:
+        - laravel.tcl_alpha
+
 networks:
     tcl_alpha:
         driver: bridge
