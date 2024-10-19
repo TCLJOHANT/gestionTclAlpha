@@ -1,0 +1,2 @@
+Generar Crud
+    php artisan make:filament-resource Model --generate
