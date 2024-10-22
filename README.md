@@ -13,6 +13,10 @@
     cd gestionTclAlpha
     docker-compose up -d
 ```
+```bash
+    sail composer install
+    sail npm install
+    sail npm run build
 
 3. Abrir la aplicación en el navegador
 
