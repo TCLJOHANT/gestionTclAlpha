@@ -14,13 +14,20 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        User::factory(10)->create();
+        User::create([
+            'name' => 'Johan Chate',
+            'email' => 'soytcljohant@gmail.com',
+            'password' => Hash::make('#%J.A.C.A88'),
+        ]);
         foreach (range(1, 10) as $i) {
-            User::create([
+            User::insert([
                 'name' => 'Test User '.$i,
                 'email' => 'test@example'.$i.'.com',
                 'password' => Hash::make('password'.$i),
             ]);
         }
+        $this->call([
+            CategoriesTableSeeder::class,
+        ]);
     }
 }
