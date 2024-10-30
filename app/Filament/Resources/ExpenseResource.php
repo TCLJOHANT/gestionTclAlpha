@@ -10,6 +10,7 @@ use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
+use Illuminate\Container\Attributes\Auth;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
@@ -23,9 +24,11 @@ class ExpenseResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\Select::make('user_id')
-                    ->relationship('user', 'name')
-                    ->required(),
+                // Forms\Components\Select::make('user_id')
+                //     ->relationship('user', 'name')
+                //     ->default(Auth::user()->id)
+                //     ->required(),
+                // campo user_id está en el modelo usando el observer
                 Forms\Components\Select::make('category_id')
                     ->relationship('category', 'name')
                     ->required(),
@@ -33,6 +36,7 @@ class ExpenseResource extends Resource
                     ->required()
                     ->numeric(),
                 Forms\Components\DatePicker::make('date')
+                    ->default(now()->format('Y-m-d'))
                     ->required(),
                 Forms\Components\Textarea::make('description')
                     ->columnSpanFull(),
